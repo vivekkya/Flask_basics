@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type=text/javascript>
+		$(function() {
+			 $('a#process_input').bind('click', function() {
+			$.getJSON('/count', {
+				 inputText: $('textarea[name="inputText"]').val(),
+			}, function(data) {
+				 $("#result").text(data.result);
+			});
+			return false;
+			 });
+
+			$('b#classify_input').bind('click', function() {
+			$.getJSON('/classify', {
+				 inputText: $('textarea[name="inputText"]').val(),
+			}, function(data) {
+				 $("#classification_result").text(data.classifier_result);
+			});
+			return false;
+			 });
+		});
+	</script>
+</head>
+   <body>
+   
+	<h1>Words Counter </h1>
+	<br>
+	<textarea type=text rows="5" cols="60" name=inputText> Enter text here </textarea>
+	<br>
+	<a href=# id=process_input><button class='btn btn-default'>Count</button></a>
+	<br>
+	<b href=# id=classify_input><button class='btn btn-default'>Classify</button></b>
+	<br>
+	<p id=classification_result></p>
+	<p id=result></p>
+	 
+   </body>
+</html>
